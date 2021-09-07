@@ -1,0 +1,53 @@
+S       : ST {printf("Input accepted.\n");exit(0);}
+         ;
+
+ST     :   INT ID '=' constant ';' switch
+        ;
+
+switch  :  SWITCH '(' ID ')' '{' B '}'
+         ;
+
+B       :    C
+         |    C    D
+        ;
+
+C      :    C    C
+        |   CASE constant ':' statements ';'
+        |   BREAK ';'
+        ;
+
+D      :    DEFAULT ':' statements ';' BREAK ';'
+        ;
+
+statements  :   statement statements E
+            |   E
+            ;
+
+statement   :   INT ID
+            |   CHAR ID
+            |   ID '(' constant ')'
+            ;
+
+E    : ID'='E
+    | E'+'E
+    | E'-'E
+    | E'*'E
+    | E PE E
+    | '(' E ')'
+    | E'/'E
+    | E'<'E
+    | E'>'E
+    | E LE E
+    | E GE E
+    | E EQ E
+    | E NE E
+    | E OR E
+    | E AND E
+    | ID
+    | constant
+    |
+    ;
+
+constant
+			: integer_constant 	{  $$=1; }
+			| string_constant	{  $$=-1;} 

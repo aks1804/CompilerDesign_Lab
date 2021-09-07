@@ -1,0 +1,1 @@
+Perform Semantic Analysis for a C program that checks if the entered string is a Palindrome or not.
